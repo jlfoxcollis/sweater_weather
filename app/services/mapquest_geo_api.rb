@@ -1,6 +1,13 @@
 class MapquestGeoApi
   class << self
 
+    def get_location(params)
+      response = faraday.get("/geocoding/v1/address") do |req|
+        req.params[:location] = params[:location]
+      end
+      parse(response)
+    end
+
 
     private
 
@@ -9,7 +16,7 @@ class MapquestGeoApi
     end
 
     def faraday
-      Faraday.new('www.mapquestapi.com'') do |faraday|
+      Faraday.new('www.mapquestapi.com') do |faraday|
         faraday.params['key'] = ENV['MAPQUEST_API_KEY']
       end
     end
