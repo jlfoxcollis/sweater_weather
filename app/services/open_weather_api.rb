@@ -6,6 +6,7 @@ class OpenWeatherApi
         req.params[:lat] = params[:lat]
         req.params[:lon] = params[:lng]
         req.params[:exclude] = "minutely,alert"
+        req.params[:units] = "imperial"
       end
       parse(response)
     end

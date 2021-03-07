@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::API
+  before_action :check_status
 
   private
 
   def check_status
-    check_your_headers unless request.format.symbol == :json
+    check_your_headers unless request.env["CONTENT_TYPE"] == "application/json"
   end
 
   def check_your_headers

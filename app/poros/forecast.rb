@@ -1,26 +1,21 @@
 class Forecast
-  attr_reader :datetime,
-              :sunrise,
-              :sunset,
-              :temperature,
-              :feels_like,
-              :humidity,
-              :uvi,
-              :visibility,
-              :conditions,
-              :icon
 
   def initialize(data)
-    @datetime = Time.at(data[:dt]).to_date
-    @sunrise = Time.at(data[:sunrise]).to_datetime
-    @sunset = Time.at(data[:sunset]).to_datetime
-    @temperature = data[:temp]
-    @feels_like = data[:feels_like]
-    @humidity = data[:humidity]
-    @uvi = data[:uvi]
-    @visibility = data[:visibility]
-    @conditions = data[:weather].first[:description]
-    @icon = data[:weather].first[:icon]
+    @data = data
+    @current_weather = current_weather
+    @hourly_weather = hourly_weather
+    @daily_weather = daily_weather
   end
 
+  def current_weather
+    CurrentForecast.new(@data[:current])
+  end
+
+  def hourly_weather
+    @data[:hourly].map {|hour| HourlyForecast.new(hour)}.first(8)
+  end
+
+  def daily_weather
+    @data[:daily].map {|day| DailyForecast.new(day)}.first(5)
+  end
 end

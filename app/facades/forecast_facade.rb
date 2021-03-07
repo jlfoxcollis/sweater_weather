@@ -15,9 +15,16 @@ class ForecastFacade
       get_forecast(latLng)
     end
 
+    # def get_forecast(params)
+    #   data = OpenWeatherApi.get_location(params)
+    #   {"current_weather": Forecast.new(data[:current]), 
+    #   "daily_weather": data[:daily].map {|day| DailyForecast.new(day)}.first(5), 
+    #   "hourly_weather": data[:hourly].map {|hour| HourlyForecast.new(hour)}.first(8)}
+    # end
+
     def get_forecast(params)
       data = OpenWeatherApi.get_location(params)
-      Forecast.new(data[:current])
+      Forecast.new(data)
     end
   end
 end
