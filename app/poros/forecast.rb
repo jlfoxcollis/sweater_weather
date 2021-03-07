@@ -2,9 +2,6 @@ class Forecast
 
   def initialize(data)
     @data = data
-    @current_weather = current_weather
-    @hourly_weather = hourly_weather
-    @daily_weather = daily_weather
   end
 
   def current_weather
