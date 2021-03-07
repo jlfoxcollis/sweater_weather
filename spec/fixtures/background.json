@@ -1,0 +1,17 @@
+{
+  "data": {
+      "id": null,
+      "type": "image",
+      "attributes": {
+          "image": {
+              "location": "Denver,CO",
+              "image_url": "https://images.unsplash.com/photo-1605033532441-30378efcd7ef?crop=entropy&cs=srgb&fm=jpg&ixid=MXwyMTMwNDR8MHwxfHNlYXJjaHwxfHxEZW52ZXIsQ098ZW58MHx8fA&ixlib=rb-1.2.1&q=85",
+              "description": "INSTAGRAM: SARRAMPHOTOGRAPHY\n",
+              "credit": {
+                  "source": null,
+                  "author": "Nima Sarram"
+              }
+          }
+      }
+  }
+}

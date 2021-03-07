@@ -10,5 +10,11 @@ class ForecastFacade
       data = OpenWeatherApi.get_location(params)
       Forecast.new(data)
     end
+
+    def get_background(params)
+      params[:search] = params[:location].split(',').first
+      data = UnsplashApi.get_background(params)
+      Background.new(data, params)
+    end
   end
 end
