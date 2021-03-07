@@ -4,7 +4,8 @@ class OpenWeatherApi
     def get_location(params)
       response = faraday.get("/data/2.5/onecall") do |req|
         req.params[:lat] = params[:lat]
-        req.params[:lon] = params[:lon]
+        req.params[:lon] = params[:lng]
+        req.params[:exclude] = "minutely,alert"
       end
       parse(response)
     end

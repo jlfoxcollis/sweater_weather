@@ -16,7 +16,7 @@ class MapquestGeoApi
     end
 
     def faraday
-      Faraday.new('www.mapquestapi.com') do |faraday|
+      Faraday.new('https://www.mapquestapi.com') do |faraday|
         faraday.params['key'] = ENV['MAPQUEST_API_KEY']
       end
     end

@@ -11,9 +11,9 @@ class Forecast
               :icon
 
   def initialize(data)
-    @datetime = Time.at(data[:dt]).utc.to_datetime
-    @sunrise = data[:sunrise]
-    @sunset = data[:sunset]
+    @datetime = Time.at(data[:dt]).to_date
+    @sunrise = Time.at(data[:sunrise]).to_datetime
+    @sunset = Time.at(data[:sunset]).to_datetime
     @temperature = data[:temp]
     @feels_like = data[:feels_like]
     @humidity = data[:humidity]
@@ -21,5 +21,6 @@ class Forecast
     @visibility = data[:visibility]
     @conditions = data[:weather].first[:description]
     @icon = data[:weather].first[:icon]
+  end
 
 end

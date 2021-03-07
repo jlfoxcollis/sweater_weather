@@ -1,7 +1,6 @@
 class ForecastSerializer
   include FastJsonapi::ObjectSerializer
   set_id { nil }
-  set_type { "forecast" }
   attributes  :datetime, 
               :sunrise, 
               :sunset, 
