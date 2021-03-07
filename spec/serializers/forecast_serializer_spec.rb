@@ -16,6 +16,5 @@ describe Forecast do
     expect(parsed[:data][:attributes]).to have_key(:current_weather)
     expect(parsed[:data][:attributes]).to have_key(:daily_weather)
     expect(parsed[:data][:attributes]).to have_key(:hourly_weather)
-
   end
 end
