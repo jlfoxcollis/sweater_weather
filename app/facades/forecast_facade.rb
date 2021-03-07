@@ -13,7 +13,7 @@ class ForecastFacade
 
     def get_background(params)
       params[:search] = params[:location].split(',').first
-      data = UnsplashApi.get_background(params)
+      data = UnsplashApi.get_background(params)[:results].first
       Background.new(data, params)
     end
   end
