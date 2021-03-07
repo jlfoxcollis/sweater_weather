@@ -121,4 +121,15 @@ describe 'it can get weather for location' do
       expect(hour[:icon]).to be_a(String)
     end
   end
+
+  describe 'it can only accept application/json' do
+    it 'rejects application/html' do
+      headers = {
+        "Content-Type" => "application/html"
+      }
+      get '/api/v1/forecast?location=Denver,CO', :headers => headers
+
+      expect(response).to_not be_successful
+    end
+  end
 end
