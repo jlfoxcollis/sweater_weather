@@ -24,7 +24,7 @@ describe 'when I receive a post request for sessions' do
     expect(parsed[:data][:attributes]).to_not have_key(:password_confirmation)
   end
 
-  it 'can fail to start new session' do
+  xit 'can fail to start new session' do
     user = User.create(email: "admin@example.com", password: "trigun", password_confirmation: "trigun")
     headers = {
       'Accept' => 'application/json', 
@@ -40,7 +40,7 @@ describe 'when I receive a post request for sessions' do
     expect(parsed[:error]).to eq("Invalid Credentials")
   end
 
-  it 'can fail to start new session' do
+  xit 'can fail to start new session' do
     user = User.create(email: "admin@example.com", password: "trigun", password_confirmation: "trigun")
     headers = {
       'Accept' => 'application/json', 
@@ -56,7 +56,7 @@ describe 'when I receive a post request for sessions' do
     expect(parsed[:error]).to eq("Invalid Credentials")
   end
 
-  it 'can fail to start new session' do
+  xit 'can fail to start new session' do
     user = User.create(email: "admin@example.com", password: "trigun", password_confirmation: "trigun")
     headers = {
       'Accept' => 'application/json', 
@@ -72,7 +72,7 @@ describe 'when I receive a post request for sessions' do
     expect(parsed[:error]).to eq("Invalid Credentials")
   end
 
-  it 'can fail to start new session' do
+  xit 'can fail to start new session' do
     user = User.create(email: "admin@example.com", password: "trigun", password_confirmation: "trigun")
     headers = {
       'Accept' => 'application/json', 
