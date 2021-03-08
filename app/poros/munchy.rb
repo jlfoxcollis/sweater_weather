@@ -12,8 +12,8 @@ class Munchy
   end
 
   def weather(weather)
-    {"summary": weather[:weather][:description],
-     "temperature": [:temp]}
+    {"summary": weather[:weather].first[:description],
+     "temperature": weather[:temp]}
   end 
   
   def foodies(yelp)
