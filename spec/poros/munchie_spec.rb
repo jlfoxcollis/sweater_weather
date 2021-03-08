@@ -10,7 +10,7 @@ describe Munchie do
 
     yelp = {
       "name": "business",
-      "display_address": "123 deadpool dr, LHC AZ 86403"
+      "location": {"display_address": "123 deadpool dr, LHC AZ 86403"}
     }
 
     weather = {
