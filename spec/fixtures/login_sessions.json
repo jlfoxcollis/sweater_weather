@@ -1,0 +1,10 @@
+{
+  "data": {
+      "id": "1",
+      "type": "users",
+      "attributes": {
+          "email": "example21@admin.com",
+          "api_key": "zcajYCMAR1YfmvkRjfoEhZtB"
+      }
+  }
+}
