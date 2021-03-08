@@ -18,7 +18,7 @@ class Munchie
   
   def foodies(yelp)
     {"name": yelp[:name],
-     "address": yelp[:display_address]
+     "address": yelp[:location][:display_address]
     }
   end
 
