@@ -7,8 +7,7 @@ describe 'when I receive a post request for sessions' do
       'Accept' => 'application/json', 
       'Content-Type' => 'application/json'
     }
-    post '/api/v1/sessions', params: JSON.generate(email: "admin@example.com", password: "trigun"), headers: headers
-
+    post '/api/v1/sessions', params: JSON.generate("users": {email: "admin@example.com", password: "trigun"}), headers: headers
     expect(response).to be_successful
 
     parsed = JSON.parse(response.body, symbolize_names: true)
@@ -31,7 +30,7 @@ describe 'when I receive a post request for sessions' do
       'Accept' => 'application/json', 
       'Content-Type' => 'application/json'
     }
-    post '/api/v1/sessions', params: JSON.generate(email: "admin@example.com", password: "noob"), headers: headers
+    post '/api/v1/sessions', params: JSON.generate("users": {email: "admin@example.com", password: "noob"}), headers: headers
 
     expect(response).to be_successful
 
@@ -47,7 +46,7 @@ describe 'when I receive a post request for sessions' do
       'Accept' => 'application/json', 
       'Content-Type' => 'application/json'
     }
-    post '/api/v1/sessions', params: JSON.generate(email: "admin@example.com", password: ""), headers: headers
+    post '/api/v1/sessions', params: JSON.generate("users": {email: "admin@example.com", password: ""}), headers: headers
 
     expect(response).to be_successful
 
@@ -63,7 +62,7 @@ describe 'when I receive a post request for sessions' do
       'Accept' => 'application/json', 
       'Content-Type' => 'application/json'
     }
-    post '/api/v1/sessions', params: JSON.generate(email: "adm1n@example.com", password: "noob"), headers: headers
+    post '/api/v1/sessions', params: JSON.generate("users": {email: "adm1n@example.com", password: "noob"}), headers: headers
 
     expect(response).to be_successful
 
@@ -79,7 +78,7 @@ describe 'when I receive a post request for sessions' do
       'Accept' => 'application/json', 
       'Content-Type' => 'application/json'
     }
-    post '/api/v1/sessions', params: JSON.generate(email: "admin@example.com", password: "noob"), headers: headers
+    post '/api/v1/sessions', params: JSON.generate("users": {email: "admin@example.com", password: "noob"}), headers: headers
 
     expect(response).to be_successful
 

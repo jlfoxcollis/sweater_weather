@@ -6,7 +6,7 @@ describe 'users controller' do
       'Accept' => 'application/json', 
       'Content-Type' => 'application/json'
     }
-    post "/api/v1/users", params: JSON.generate("email": "auron1731@yahoo.com", "password": "trigun", "password_confirmation": "trigun"), headers: headers
+    post "/api/v1/users", params: JSON.generate("users": {"email": "auron1731@yahoo.com", "password": "trigun", "password_confirmation": "trigun"}), headers: headers
 
     expect(response).to be_successful
     parsed = JSON.parse(response.body, symbolize_names: true)
@@ -28,7 +28,7 @@ describe 'users controller' do
       'Accept' => 'application/json', 
       'Content-Type' => 'application/json'
     }
-    post "/api/v1/users", params: JSON.generate("email": "auron1731@yahoo.com", "password": "trigun", "password_confirmation": "123"), headers: headers
+    post "/api/v1/users", params: JSON.generate("users": {"email": "auron1731@yahoo.com", "password": "trigun", "password_confirmation": "123"}), headers: headers
 
     expect(response).to be_successful
     parsed = JSON.parse(response.body, symbolize_names: true)
@@ -43,7 +43,7 @@ describe 'users controller' do
       'Accept' => 'application/json', 
       'Content-Type' => 'application/json'
     }
-    post "/api/v1/users", params: JSON.generate("email": "admin@example.com", "password": "trigun", "password_confirmation": "trigun"), headers: headers
+    post "/api/v1/users", params: JSON.generate("users": {"email": "admin@example.com", "password": "trigun", "password_confirmation": "trigun"}), headers: headers
 
     expect(response).to be_successful
 
@@ -58,7 +58,7 @@ describe 'users controller' do
       'Accept' => 'application/json', 
       'Content-Type' => 'application/json'
     }
-    post "/api/v1/users", params: JSON.generate("email": "example.com", "password": "trigun", "password_confirmation": "trigun"), headers: headers
+    post "/api/v1/users", params: JSON.generate("users": {"email": "example.com", "password": "trigun", "password_confirmation": "trigun"}), headers: headers
 
     expect(response).to be_successful
 
@@ -74,7 +74,7 @@ describe 'users controller' do
       'Accept' => 'application/json', 
       'Content-Type' => 'application/json'
     }
-    post "/api/v1/users", params: JSON.generate("email": "admin@example.com", "password": "", "password_confirmation": ""), headers: headers
+    post "/api/v1/users", params: JSON.generate("users": {"email": "admin@example.com", "password": "", "password_confirmation": ""}), headers: headers
 
     expect(response).to be_successful
 

@@ -20,6 +20,10 @@ end
   end
 
   def invalid
-    render json: {"error": "Invalid Credentials"}
+    render json: {"error": "Invalid Credentials"}, status: 400
+  end
+
+  def unauthorized
+    render json: {"error": "Unauthorized"}, status: 401
   end
 end
