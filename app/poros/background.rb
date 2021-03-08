@@ -10,7 +10,7 @@ class Background
     image_url: data[:urls][:full],
     description: data[:description],
     credit: {
-      source: data[:user][:download_location],
+      source: data[:links][:download_location],
       author: data[:user][:name]
     }}
   end
