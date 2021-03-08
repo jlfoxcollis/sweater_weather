@@ -1,11 +1,11 @@
-class Munchy
+class Munchie
   attr_reader :destination_city,
               :travel_time,
               :forecast,
               :restaurant
 
   def initialize(data, yelp, weather)
-    @destination_city = data[:locations].last
+    @destination_city = "#{data[:locations].last[:adminArea5]}, #{data[:locations].last[:adminArea3]}"
     @travel_time = t_time(data[:realTime])
     @forecast = weather(weather)
     @restaurant = foodies(yelp)

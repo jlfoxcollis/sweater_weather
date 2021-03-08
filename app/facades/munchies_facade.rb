@@ -5,6 +5,6 @@ class MunchiesFacade
     directions = MapquestGeoApi.get_directions(params)
     restaurant = YelpApi.get_restaurant(params)
     weather = OpenWeatherApi.get_location(directions[:route][:locations].last[:latLng])
-    Munchy.new(directions[:route], restaurant[:businesses].first, weather[:current])
+    Munchie.new(directions[:route], restaurant[:businesses].first, weather[:current])
   end
 end
