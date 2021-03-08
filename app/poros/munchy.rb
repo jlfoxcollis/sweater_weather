@@ -4,18 +4,16 @@ class Munchy
               :forecast,
               :restaurant
 
-  def initialize(data, yelp, params)
-    @destination_city = params[:destination]
+  def initialize(data, yelp, weather)
+    @destination_city = data[:locations].last
     @travel_time = t_time(data[:realTime])
-    @forecast = weather(data)
+    @forecast = weather(weather)
     @restaurant = foodies(yelp)
   end
 
-  def weather(data)
-    forecast = OpenWeatherApi.get_location(data[:locations].last[:latLng])
-    binding.pry
-    {"summary": "",
-     "temperature": ""}
+  def weather(weather)
+    {"summary": weather[:weather][:description],
+     "temperature": [:temp]}
   end 
   
   def foodies(yelp)
