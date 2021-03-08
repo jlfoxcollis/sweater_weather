@@ -24,7 +24,12 @@ describe Munchie do
     expect(results).to have_attributes(:destination_city => String)
     expect(results).to have_attributes(:travel_time => String)
     expect(results).to have_attributes(:forecast => Hash)
+    expect(results.forecast).to have_key(:summary)
+    expect(results.forecast).to have_key(:temperature)
+
     expect(results).to have_attributes(:restaurant => Hash)
+    expect(results.restaurant).to have_key(:name)
+    expect(results.restaurant).to have_key(:address)
 
 
   end
