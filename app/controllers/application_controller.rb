@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::API
   before_action :check_status, :check_accept
 
+rescue_from ActionController::ParameterMissing do |e|
+  check_your_headers
+end
+
   private
 
   def check_status
@@ -13,5 +17,9 @@ class ApplicationController < ActionController::API
 
   def check_your_headers
     render json: {"error": "Invalid Request, check your headers"}, status: 415
+  end
+
+  def invalid
+    render json: {"error": "Invalid Credentials"}
   end
 end
