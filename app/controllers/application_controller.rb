@@ -23,6 +23,10 @@ end
     render json: {"error": "Invalid Credentials"}, status: 400
   end
 
+  def something_went_wrong
+    render json: {"error": "Something went wrong."}, status: 404
+  end
+  
   def unauthorized
     render json: {"error": "Unauthorized"}, status: 401
   end

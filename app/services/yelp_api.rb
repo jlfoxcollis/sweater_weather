@@ -6,6 +6,7 @@ class YelpApi
         req.params[:location] = params[:destination]
         req.params[:categories] = "food"
         req.params[:term] = params[:food]
+        req.params[:limit] = 1
       end
       parse(response)
     end
