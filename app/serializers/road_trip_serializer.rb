@@ -1,4 +1,4 @@
-class ForecastSerializer
+class RoadTripSerializer
   include FastJsonapi::ObjectSerializer
   set_id { nil }
   set_type :roadtrip

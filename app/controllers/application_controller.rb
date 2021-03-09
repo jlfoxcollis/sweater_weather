@@ -16,7 +16,7 @@ end
   end
 
   def check_your_headers
-    render json: {"error": "Invalid Request, check your headers"}, status: 415
+    render json: {"error": "Invalid Request"}, status: 415
   end
 
   def invalid
@@ -25,5 +25,9 @@ end
 
   def unauthorized
     render json: {"error": "Unauthorized"}, status: 401
+  end
+  
+  def something_went_wrong
+    render json: {"error": "Something went wrong.  Please try again later."}, status: 400
   end
 end

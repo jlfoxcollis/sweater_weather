@@ -11,7 +11,6 @@ class OpenWeatherApi
       parse(response)
     end
 
-
     private
 
     def parse(arg)

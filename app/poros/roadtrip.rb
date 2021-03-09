@@ -4,16 +4,23 @@ class Roadtrip
               :travel_time,
               :weather_at_eta
 
-  def initialize(data)
+  def initialize(data, weather)
     @start_city = "#{data[:locations].first[:adminArea5]}, #{data[:locations].first[:adminArea3]}"
     @end_city = "#{data[:locations].last[:adminArea5]}, #{data[:locations].last[:adminArea3]}"
-    @travel_time = Time.at(data[:route][:realTime]).strftime("%I:%M%p")
-    @weather_at_eta = weather(data)
+    @travel_time = t_time(data[:realTime])
+    @weather_at_eta = future_forecast(weather, data)
   end
 
-  def weather(data)
-    forecast = OpenWeatherApi.future_forecast(data[:locations].first[:latLng], data[:locations].last[:latLng])
-    binding.pry
-    {"temperature": forecast[:]}
+  def future_forecast(weather, data)
+    selected = weather.select {|cast| Time.at(cast[:dt]) > (Time.now + data[:realTime])}.first
+    {"temperature": selected[:temp], "conditions": selected[:weather].first[:description]}
+  end
+
+
+  def t_time(data)
+    convert = (data / 60)
+    hours = (convert / 60)
+    minutes = (convert % 60)
+    "#{hours} hours #{minutes} min"
   end
 end
