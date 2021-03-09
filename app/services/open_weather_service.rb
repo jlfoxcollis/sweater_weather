@@ -1,4 +1,4 @@
-class OpenWeatherApi
+class OpenWeatherService
   class << self
 
     def get_location(params)

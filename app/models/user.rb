@@ -3,7 +3,4 @@ class User < ApplicationRecord
   validates_presence_of :password, require: true
   has_secure_password
   has_secure_token :api_key
-
-  after_save
-  validates_presence_of :api_key
 end

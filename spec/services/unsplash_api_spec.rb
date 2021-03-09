@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe UnsplashApi do
+describe UnsplashService do
   it 'get_background' do
     unsplash = File.read('spec/fixtures/unsplash_response.json')
     stub_request(:get, /photos/).to_return(
@@ -8,7 +8,7 @@ describe UnsplashApi do
       )
     params = Hash.new
     params[:query] = "Denver"
-    results = UnsplashApi.get_background(params)
+    results = UnsplashService.get_background(params)
 
     expect(results).to have_key(:results)
     image = results[:results].first

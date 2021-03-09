@@ -6,7 +6,11 @@ describe 'when I want to go on a trip' do
   end
 
   it 'can return the roadtrip details' do
-    post "/api/v1/road_trip", params: JSON.generate(origin: "Denver,CO", destination: "Pueblo,CO", api_key: @user.api_key)
+    headers = {
+      'Accept' => 'application/json', 
+      'Content-Type' => 'application/json'
+    }
+    post "/api/v1/road_trip", params: JSON.generate("road_trip": {"origin": "Denver,CO", "destination": "Pueblo,CO", "api_key": @user.api_key}), headers: headers
 
     expect(response).to be_successful
 

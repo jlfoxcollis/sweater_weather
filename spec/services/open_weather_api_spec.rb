@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe OpenWeatherApi do
+describe OpenWeatherService do
   it 'can get one time weather information for location' do
     denver = File.read('spec/fixtures/open_weather_denver.json')
     stub_request(:get, /onecall/).to_return(
@@ -10,7 +10,7 @@ describe OpenWeatherApi do
     params = Hash.new
     params[:lat] = 39.738453
     params[:lng] = -104.984853
-    results = OpenWeatherApi.get_location(params)
+    results = OpenWeatherService.get_location(params)
 
     expect(results).to have_key(:current)
     expect(results).to have_key(:daily)

@@ -1,4 +1,4 @@
-class UnsplashApi
+class UnsplashService
   class << self
     def get_background(params)
       response = faraday.get("/search/photos") do |req|

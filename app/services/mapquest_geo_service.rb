@@ -1,4 +1,4 @@
-class MapquestGeoApi
+class MapquestGeoService
   class << self
 
     def get_location(params)
