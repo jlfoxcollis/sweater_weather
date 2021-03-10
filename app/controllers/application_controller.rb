@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  before_action :check_status, :check_accept
+  before_action :check_accept
 
 rescue_from ActionController::ParameterMissing do |e|
   check_your_headers
@@ -7,12 +7,8 @@ end
 
   private
 
-  def check_status
-    check_your_headers unless request.env["CONTENT_TYPE"] == "application/json"
-  end
-
   def check_accept
-    check_your_headers unless request.env["HTTP_ACCEPT"] == "application/json"
+    check_your_headers unless request.format.symbol == :json
   end
 
   def check_your_headers
