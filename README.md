@@ -26,8 +26,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Schema](https://github.com/jlfoxcollis/rails-engine/blob/main/schema.png)
-
 Sweater Weather is a rails backend API, built with the purpose of letting a front end application consume endpoints to build out a travel application.  This allows a consumer to check current/future weather forecasts in their location.  Plan trips, and see the expected weather upon arrival.  A consumer is able to create an account, and in the future they can hopefully save trips and weather forecasts.
 
 
