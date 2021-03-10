@@ -68,6 +68,21 @@ describe 'users controller' do
     expect(parsed[:errors].first).to eq("Email is invalid")
   end
 
+  it 'cant proceed with missing parameters' do
+    headers = {
+      'Accept' => 'application/json', 
+      'Content-Type' => 'application/json'
+    }
+    post "/api/v1/users", params: JSON.generate("email": "example.com", "password": "trigun", "password_confirmation": "trigun"), headers: headers
+
+    expect(response).to_not be_successful
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq("Parameters missing/invalid")
+  end
+
   it 'cant create user with used email and bad password' do
     user = User.create(email: "admin@example.com", password: "trigun", password_confirmation: "trigun")
     headers = {
@@ -81,7 +96,7 @@ describe 'users controller' do
     parsed = JSON.parse(response.body, symbolize_names: true)
 
     expect(parsed).to have_key(:errors)
-    expect(parsed[:errors]).to eq(["Email has already been taken", "Password can't be blank", "Password can't be blank"])
+    expect(parsed[:errors]).to eq(["Email has already been taken", "Password can't be blank"])
   end
 
   
