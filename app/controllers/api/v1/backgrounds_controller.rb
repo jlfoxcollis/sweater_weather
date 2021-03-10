@@ -2,7 +2,7 @@ class Api::V1::BackgroundsController < ApplicationController
 
   def index
     begin
-      data = ForecastFacade.get_background(params)
+      data = BackgroundFacade.get_background(params)
       render json: BackgroundSerializer.new(data)
     rescue
       something_went_wrong
