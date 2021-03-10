@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe MapquestGeoApi do
+describe MapquestGeoService do
   it 'works' do
     denver = File.read('spec/fixtures/denver.json')
     stub_request(:get, /address/).to_return(
@@ -8,7 +8,7 @@ describe MapquestGeoApi do
       )
     params = Hash.new
     params[:location] = "Denver,CO"
-    results = MapquestGeoApi.get_location(params)
+    results = MapquestGeoService.get_location(params)
 
     expect(results[:results].first[:locations].first[:latLng]).to have_key(:lat)
     expect(results[:results].first[:locations].first[:latLng]).to have_key(:lng)

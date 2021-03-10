@@ -121,15 +121,59 @@ describe 'it can get weather for location' do
       expect(hour[:icon]).to be_a(String)
     end
   end
+end
 
-  describe 'it can only accept application/json' do
-    it 'rejects application/html' do
+describe 'it can only accept application/json' do
+  it 'rejects application/html' do
+    headers = {
+      "Content-Type" => "application/html"
+    }
+    get '/api/v1/forecast?location=Denver,CO', :headers => headers
+
+    expect(response).to_not be_successful
+  end
+end
+
+describe 'sad path testing for forecast' do
+  it 'rescues when connection timeout' do
+    denver = File.read('spec/fixtures/denver.json')
+    stub_request(:get, /address/).to_timeout
+
+    denver_forecast = File.read('spec/fixtures/open_weather_denver.json')
+    stub_request(:get, /onecall/).to_return(
+      status: 200, body: denver_forecast, headers: {}
+      )
       headers = {
-        "Content-Type" => "application/html"
+        'Accept' => 'application/json', 
+        'Content-Type' => 'application/json'
       }
-      get '/api/v1/forecast?location=Denver,CO', :headers => headers
+    get '/api/v1/forecast?location=Denver,CO', :headers => headers
 
-      expect(response).to_not be_successful
-    end
+    expect(response).to_not be_successful
+    parsed = JSON.parse(response.body, symbolize_names: true)
+    
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq("Something went wrong.  Please try again later.")
+  end
+
+  it 'rescues when connection timeout' do
+    denver = File.read('spec/fixtures/denver.json')
+    stub_request(:get, /address/).to_timeout
+
+    denver_forecast = File.read('spec/fixtures/open_weather_denver.json')
+    stub_request(:get, /onecall/).to_return(
+      status: 200, body: denver_forecast, headers: {}
+      )
+      headers = {
+        'Accept' => 'application/json', 
+        'Content-Type' => 'application/json'
+      }
+    get '/api/v1/forecast?', :headers => headers
+
+    expect(response).to_not be_successful
+    parsed = JSON.parse(response.body, symbolize_names: true)
+    
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq("Something went wrong.  Please try again later.")
   end
 end
