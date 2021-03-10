@@ -12,7 +12,7 @@ class Roadtrip
   end
 
   def future_forecast(weather, data)
-    selected = weather.select {|cast| Time.at(cast[:dt]) > (Time.now + data[:realTime])}.first
+    selected = weather[:hourly].select {|cast| Time.at(cast[:dt]) > (Time.at(weather[:current][:dt]) + data[:realTime])}.first
     {"temperature": selected[:temp], "conditions": selected[:weather].first[:description]}
   end
 

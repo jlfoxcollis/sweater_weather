@@ -6,6 +6,15 @@ describe 'when I want to go on a trip' do
   end
 
   it 'can return the roadtrip details' do
+    denver = File.read('spec/fixtures/route.json')
+    stub_request(:get, /route/).to_return(
+      status: 200, body: denver, headers: {}
+      )
+
+    denver_forecast = File.read('spec/fixtures/open_weather_denver.json')
+    stub_request(:get, /onecall/).to_return(
+      status: 200, body: denver_forecast, headers: {}
+      )
     headers = {
       'Accept' => 'application/json', 
       'Content-Type' => 'application/json'
