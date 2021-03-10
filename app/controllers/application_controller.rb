@@ -1,12 +1,7 @@
 class ApplicationController < ActionController::API
   before_action :check_accept
-
-rescue_from ActionController::ParameterMissing do |e|
-  check_your_headers
-end
-
+  
   private
-
 
   def check_accept
     check_your_headers unless request.format.symbol == :json
