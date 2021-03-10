@@ -78,6 +78,7 @@ This project is currently not deployed with any online platforms.  So in order t
 ### These are the approved endpoints and allowed parameters
 ### The Content-Type: and Accept: must both be application/json
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.postman.co/run-collection/5eca6f1ea028f2e85d10)
+
 ```
 GET /api/v1/forecast
 params: location=Denver,CO
