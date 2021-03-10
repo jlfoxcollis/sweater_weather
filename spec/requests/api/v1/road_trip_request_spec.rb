@@ -38,4 +38,50 @@ describe 'when I want to go on a trip' do
     expect(trip[:weather_at_eta]).to have_key(:temperature)
     expect(trip[:weather_at_eta]).to have_key(:conditions)
   end
+
+  it 'can error with bad api_key' do
+    denver = File.read('spec/fixtures/route.json')
+    stub_request(:get, /route/).to_return(
+      status: 200, body: denver, headers: {}
+      )
+
+    denver_forecast = File.read('spec/fixtures/open_weather_denver.json')
+    stub_request(:get, /onecall/).to_return(
+      status: 200, body: denver_forecast, headers: {}
+      )
+    headers = {
+      'Accept' => 'application/json', 
+      'Content-Type' => 'application/json'
+    }
+    post "/api/v1/road_trip", params: JSON.generate("road_trip": {"origin": "Denver,CO", "destination": "Pueblo,CO", "api_key": "12345"}), headers: headers
+
+    expect(response).to_not be_successful
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq("Unauthorized")
+  end
+
+  it 'can return the roadtrip details' do
+    denver = File.read('spec/fixtures/route.json')
+    stub_request(:get, /route/).to_timeout
+
+    denver_forecast = File.read('spec/fixtures/open_weather_denver.json')
+    stub_request(:get, /onecall/).to_return(
+      status: 200, body: denver_forecast, headers: {}
+      )
+    headers = {
+      'Accept' => 'application/json', 
+      'Content-Type' => 'application/json'
+    }
+    post "/api/v1/road_trip", params: JSON.generate("road_trip": {"origin": "Denver,CO", "destination": "Pueblo,CO", "api_key": @user.api_key}), headers: headers
+
+    expect(response).to_not be_successful
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq("Something went wrong.  Please try again later.")
+  end
 end

@@ -48,4 +48,23 @@ describe 'it can return an image based on location' do
     expect(parsed).to have_key(:error)
     expect(parsed[:error]).to eq("Something went wrong.  Please try again later.")
   end
+
+  it 'can rescue error when service is down' do
+    unsplash = nil
+    stub_request(:get, /photos/).to_return(
+      status: 200, body: unsplash
+      )
+    headers = {
+      'Accept' => 'application/json', 
+      'Content-Type' => 'application/json'
+    }
+    get "/api/v1/backgrounds", headers: headers
+
+    expect(response).to_not be_successful
+
+    parsed = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed).to have_key(:error)
+    expect(parsed[:error]).to eq("Something went wrong.  Please try again later.")
+  end
 end

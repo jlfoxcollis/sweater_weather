@@ -13,10 +13,10 @@ describe RoadTripFacade do
       )
 
     params = Hash.new
-    params[:road_trip] = {}
-    params[:road_trip][:origin] = "Denver,CO"
-    params[:road_trip][:destination] = "LakeHavasuCity,CO"
-    params[:road_trip][:api_key] = @user.api_key
+    params = {}
+    params[:origin] = "Denver,CO"
+    params[:destination] = "LakeHavasuCity,CO"
+    params[:api_key] = @user.api_key
     product = RoadTripFacade.get_directions(params)
 
 
