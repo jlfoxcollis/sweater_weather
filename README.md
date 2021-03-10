@@ -75,10 +75,151 @@ This project is currently not deployed with any online platforms.  So in order t
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+### These are the approved endpoints and allowed parameters
+### The Content-Type: and Accept: must both be application/json
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.postman.co/run-collection/5eca6f1ea028f2e85d10)
+```
+GET /api/v1/forecast
+params: location=Denver,CO
+location must be city and state separated by a comma, no spaces.
+```
+Expected response:
+```
+{
+  "data": {
+    "id": null,
+    "type": "forecast",
+    "attributes": {
+      "current_weather": {
+        "datetime": "2020-09-30 13:27:03 -0600",
+        "temperature": 79.4,
+        etc
+      },
+      "daily_weather": [
+        {
+          "date": "2020-10-01",
+          "sunrise": "2020-10-01 06:10:43 -0600",
+          etc
+        },
+        {...} etc
+      ],
+      "hourly_weather": [
+        {
+          "time": "14:00:00",
+          "conditions": "cloudy with a chance of meatballs",
+          etc
+        },
+        {...} etc
+      ]
+    }
+  }
+}
+```
 
-*Refer to the root page for endpoints and query parameters
+```
+GET /api/v1/backgrounds
+params: location=Denver,CO
+location must be city and state separated by a comma, no spaces.
+```
+Expected Response
+```
+{
+  "data": {
+    "type": "image",
+    "id": null,
+    "attributes": {
+      "image": {
+        "location": "denver,co",
+        "image_url": "https://pixabay.com/get/54e6d4444f50a814f1dc8460962930761c38d6ed534c704c7c2878dd954dc451_640.jpg",
+        "description": "sample description by the pictures author",
+        "credit": {
+          "source": "pixabay.com",
+          "author": "quinntheislander",
+        }
+      }
+    }
+  }
+}
+```
 
+```
+POST /api/v1/users
+JSON payload must be in the following structure:
+  { "users": {
+    "email": "admin@example.com",
+    "password": "example",
+    "password_confirmation": "example"
+    }
+  }
+```
+Expected Response
+```
+{
+  "data": {
+    "type": "users",
+    "id": "1",
+    "attributes": {
+      "email": "whatever@example.com",
+      "api_key": "jgn983hy48thw9begh98h4539h4"
+    }
+  }
+}
+```
 
+```
+POST /api/v1/sessions
+JSON payload must be in the following structure:
+  { "users": {
+    "email": "admin@example.com",
+    "password": "example",
+    }
+  }
+```
+Expected Response
+```
+{
+  "data": {
+    "type": "users",
+    "id": "1",
+    "attributes": {
+      "email": "whatever@example.com",
+      "api_key": "jgn983hy48thw9begh98h4539h4"
+    }
+  }
+}
+```
+
+```
+POST /api/v1/road_trip
+JSON payload must be in the following structure:
+  { "road_trip": {
+    "origin": "Denver,CO",
+    "destination": "Anchorage,AK",
+    "api_key": "your_user_api_key"
+    }
+  }
+To get an api_key, you must first create an account outlined above.
+origin and destination must be city and state separated by a comma, no spaces.
+```
+Expected Response
+- Note that if the route provided has any road closures, the route will be considered impossible.
+```
+{
+  "data": {
+    "id": null,
+    "type": "roadtrip",
+    "attributes": {
+      "start_city": "Denver, CO",
+      "end_city": "Estes Park, CO",
+      "travel_time": "2 hours, 13 minutes"
+      "weather_at_eta": {
+        "temperature": 59.4,
+        "conditions": "partly cloudy with a chance of meatballs"
+      }
+    }
+  }
+}
+```
 <!-- CONTACT -->
 ## Contact
 
