@@ -7,6 +7,7 @@ end
 
   private
 
+
   def check_accept
     check_your_headers unless request.format.symbol == :json
   end
